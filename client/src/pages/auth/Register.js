@@ -8,19 +8,10 @@ const Register = ({ history }) => {
   const [email, setEmail] = useState("");
   const [flag, setFlag] = useState(false);
 
-  const dispatch = useDispatch();
-
   const { user } = useSelector((state) => ({ ...state }));
   useEffect(() => {
     if (user && user.token) history.push("/");
   }, [user]);
-
-  // dispatch({
-  //   type: "ON_REGIS_PAGE",
-  //   payload: {
-  //     on_regis_page: true,
-  //   },
-  // });
 
   const handleSubmit = async (e) => {
     e.preventDefault();

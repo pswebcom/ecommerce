@@ -18,12 +18,6 @@ const Login = ({ history }) => {
   }, [user]);
 
   let dispatch = useDispatch();
-  // dispatch({
-  //   type: "ON_LOGIN_PAGE",
-  //   payload: {
-  //     on_login_page: true,
-  //   },
-  // });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -114,7 +108,7 @@ const Login = ({ history }) => {
           Login with Google
         </Button>
         <Link
-          to="/reset-password"
+          to="/forgot-password"
           className="font-weight-bold text-danger d-block pt-2"
         >
           Forgot Password

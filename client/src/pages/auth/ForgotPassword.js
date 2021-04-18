@@ -6,7 +6,7 @@ import Loading from "../../components/loading/loading";
 import "./auth.css";
 import { useSelector } from "react-redux";
 
-const ResetPassword = ({ history }) => {
+const ForgotPassword = ({ history }) => {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [flag, setFlag] = useState(false);
@@ -43,7 +43,7 @@ const ResetPassword = ({ history }) => {
 
   const loginForm = () => (
     <div className="form">
-      {!flag && <h4>Reset Password </h4>}
+      {!flag && <h4>Forgot Password </h4>}
 
       {flag && <h2>Please Check Your Email for Reset Pasword Link</h2>}
 
@@ -87,4 +87,4 @@ const ResetPassword = ({ history }) => {
   );
 };
 
-export default ResetPassword;
+export default ForgotPassword;

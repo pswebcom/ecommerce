@@ -5,7 +5,6 @@ import firebase from "firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import {
-  // MailOutlined,
   AppstoreOutlined,
   SettingOutlined,
   UserOutlined,
@@ -16,12 +15,12 @@ import {
 const { SubMenu, Item } = Menu;
 
 const Header = () => {
+  const url = "http://localhost:3000";
   const [current, setCurrent] = useState("home");
 
   let dispatch = useDispatch();
 
   let { user } = useSelector((state) => ({ ...state }));
-  // let { page } = useSelector((state) => ({ ...state }));
 
   let history = useHistory();
 
@@ -45,22 +44,19 @@ const Header = () => {
       mode="horizontal"
       className="float-right"
     >
-      {/* {user && !page.on_home_page && ( */}
       {user && (
         <Item key="home" icon={<AppstoreOutlined />}>
           <Link to="/">Home</Link>
         </Item>
       )}
 
-      {/* {!user && !page.on_login_page && ( */}
-      {!user && (
+      {!user && window.location.href !== `${url}/login` && (
         <Item key="login" icon={<UserOutlined />} className="float-right">
           <Link to="/login">Login</Link>
         </Item>
       )}
 
-      {/* {!user && !page.on_regis_page && ( */}
-      {!user && (
+      {!user && window.location.href !== `${url}/register` && (
         <Item key="register" icon={<UserAddOutlined />} className="float-right">
           <Link to="/register">Register</Link>
         </Item>
