@@ -6,16 +6,18 @@ import Loading from "../../components/loading/loading";
 import "./auth.css";
 import { useSelector } from "react-redux";
 
-const ResetPassword = ({ history }) => {
+const ForgotPassword = ({ history }) => {
   const [email, setEmail] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [flag, setFlag] = useState(false);
-
   const { user } = useSelector((state) => ({ ...state }));
 
   useEffect(() => {
-    if (user && user.token) history.push("/");
-  }, [user]);
+    if (user && user.token) {
+      history.push("/");
+    }
+    setLoading(false);
+  }, [user, history]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -41,9 +43,9 @@ const ResetPassword = ({ history }) => {
       });
   };
 
-  const loginForm = () => (
+  const forgotPasswordForm = () => (
     <div className="form">
-      {!flag && <h4>Reset Password </h4>}
+      {!flag && <h4>Forgot Password </h4>}
 
       {flag && <h2>Please Check Your Email for Reset Pasword Link</h2>}
 
@@ -80,11 +82,11 @@ const ResetPassword = ({ history }) => {
       <div className="row">
         {/* put in center for that we use offset */}
         <div className="col-md-6 offset-md-3">
-          {loading ? <Loading /> : loginForm()}
+          {loading ? <Loading /> : forgotPasswordForm()}
         </div>
       </div>
     </div>
   );
 };
 
-export default ResetPassword;
+export default ForgotPassword;

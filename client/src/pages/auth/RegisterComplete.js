@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { auth } from "../../firebase";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { createOrUpdateUser } from "../../functions/auth";
 
 //props.history
 const RegisterComplete = ({ history }) => {
@@ -8,10 +10,14 @@ const RegisterComplete = ({ history }) => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  //user from redux
+  // const { user } = useSelector((state) => ({ ...state }));
+  let dispatch = useDispatch();
+
   //useEffect will populate email onload
   useEffect(() => {
     setEmail(window.localStorage.getItem("emailForRegisteration"));
-  }, []);
+  }, [history]);
   //argument 1 is fn argument 2 is dependency
   //whatever we use as dependency when it changes fex password
   //useState will run
@@ -55,8 +61,23 @@ const RegisterComplete = ({ history }) => {
         //step 2 Get user Id Token...
         let user = auth.currentUser;
         await user.updatePassword(password); //previously it was pwd less now with pwd
-        const userToken = await user.getIdTokenResult();
+        const idTokenResult = await user.getIdTokenResult();
         //step 3 redux store...
+
+        createOrUpdateUser(idTokenResult.token)
+          .then((res) => {
+            dispatch({
+              type: "LOGGED_IN_USER",
+              payload: {
+                name: res.data.name,
+                email: res.data.email,
+                role: res.data.role,
+                _id: res.data._id,
+                token: idTokenResult.token,
+              },
+            });
+          })
+          .catch((err) => console.log("error______", err));
 
         //step 4 redirect...
         history.push("/");

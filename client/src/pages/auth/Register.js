@@ -2,25 +2,22 @@ import React, { useState, useEffect } from "react";
 import { auth } from "../../firebase";
 import { toast } from "react-toastify";
 import { Input, Button } from "antd";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import Loading from "../../components/loading/loading";
 
 const Register = ({ history }) => {
   const [email, setEmail] = useState("");
   const [flag, setFlag] = useState(false);
-
-  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(true);
 
   const { user } = useSelector((state) => ({ ...state }));
   useEffect(() => {
-    if (user && user.token) history.push("/");
-  }, [user]);
-
-  // dispatch({
-  //   type: "ON_REGIS_PAGE",
-  //   payload: {
-  //     on_regis_page: true,
-  //   },
-  // });
+    setLoading(true);
+    if (user && user.token) {
+      history.push("/");
+    }
+    setLoading(false);
+  }, [user, history]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -73,10 +70,13 @@ const Register = ({ history }) => {
   return (
     <div className="container p-5">
       <div className="row">
-        {/* put in center for that we use offset */}
-        <div className="col-md-6 offset-md-3">
-          {!flag ? registerForm() : showMessage()}
-        </div>
+        {loading ? (
+          <Loading />
+        ) : (
+          <div className="col-md-6 offset-md-3">
+            {!flag ? registerForm() : showMessage()}
+          </div>
+        )}
       </div>
     </div>
   );
