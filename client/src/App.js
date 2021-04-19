@@ -11,12 +11,15 @@ import Home from "./pages/Home";
 import Header from "./components/nav/Header";
 import RegisterComplete from "./pages/auth/RegisterComplete";
 import ForgotPassword from "./pages/auth/ForgotPassword";
+<<<<<<< HEAD
 import History from "./pages/user/History";
 import UpdatePassword from "./pages/user/UpdatePassword";
 import Wishlist from "./pages/user/Wishlist";
 import UserRoute from "./components/routes/UserRoute";
 import AdminRoute from "./components/routes/AdminRoute";
 import AdminDashboard from "./pages/admin/AdminDashboard";
+=======
+>>>>>>> 229820b0c031893b8f44ffb866a618a853e90c64
 
 import { currentUser } from "./functions/auth";
 
@@ -30,6 +33,7 @@ const App = () => {
   //it will only ever execute once - when the component initially renders
   useEffect(() => {
     // onAuthStateChanged Adds an observer for changes to the user's sign-in state.
+<<<<<<< HEAD
     const unSubscribe = auth.onAuthStateChanged(
       async (user) => {
         if (user) {
@@ -54,6 +58,22 @@ const App = () => {
       },
       [dispatch]
     );
+=======
+    const unSubscribe = auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        // User is signed in.
+        const idTokenResult = await user.getIdTokenResult();
+
+        dispatch({
+          type: "LOGGED_IN_USER",
+          payload: {
+            email: user.email,
+            token: idTokenResult.token,
+          },
+        });
+      }
+    });
+>>>>>>> 229820b0c031893b8f44ffb866a618a853e90c64
 
     return () => unSubscribe();
   });
@@ -68,10 +88,13 @@ const App = () => {
         <Route exact path="/login" component={Login} />
         <Route exact path="/register/complete" component={RegisterComplete} />
         <Route exact path="/forgot-password" component={ForgotPassword} />
+<<<<<<< HEAD
         <UserRoute exact path="/user/password" component={UpdatePassword} />
         <UserRoute exact path="/user/wishlist" component={Wishlist} />
         <UserRoute exact path="/user/history" component={History} />
         <AdminRoute exact path="/admin/dashboard" component={AdminDashboard} />
+=======
+>>>>>>> 229820b0c031893b8f44ffb866a618a853e90c64
       </Switch>
     </>
   );

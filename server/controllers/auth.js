@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const User = require("../models/user");
 
 exports.createOrUpdateUserController = async (req, res) => {
@@ -30,5 +31,10 @@ exports.currentUserController = async (req, res) => {
   User.findOne({ email: req.user.email }).exec((err, user) => {
     if (err) throw new Error(err);
     res.json(user);
+=======
+exports.createOrUpdateUserController = (req, res) => {
+  res.json({
+    data: "hi you hit create or update user API endpoint",
+>>>>>>> 229820b0c031893b8f44ffb866a618a853e90c64
   });
 };

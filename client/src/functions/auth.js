@@ -23,6 +23,7 @@ export const currentUser = async (authtoken) => {
     }
   );
 };
+<<<<<<< HEAD
 
 export const currentAdmin = async (authtoken) => {
   return await axios.post(
@@ -35,3 +36,5 @@ export const currentAdmin = async (authtoken) => {
     }
   );
 };
+=======
+>>>>>>> 229820b0c031893b8f44ffb866a618a853e90c64

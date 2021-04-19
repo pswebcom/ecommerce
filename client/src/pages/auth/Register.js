@@ -8,6 +8,7 @@ import Loading from "../../components/loading/loading";
 const Register = ({ history }) => {
   const [email, setEmail] = useState("");
   const [flag, setFlag] = useState(false);
+<<<<<<< HEAD
   const [loading, setLoading] = useState(true);
 
   const { user } = useSelector((state) => ({ ...state }));
@@ -18,6 +19,13 @@ const Register = ({ history }) => {
     }
     setLoading(false);
   }, [user, history]);
+=======
+
+  const { user } = useSelector((state) => ({ ...state }));
+  useEffect(() => {
+    if (user && user.token) history.push("/");
+  }, [user]);
+>>>>>>> 229820b0c031893b8f44ffb866a618a853e90c64
 
   const handleSubmit = async (e) => {
     e.preventDefault();

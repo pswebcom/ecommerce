@@ -23,6 +23,7 @@ const Login = ({ history }) => {
   }, [user, history]);
 
   let dispatch = useDispatch();
+<<<<<<< HEAD
 
   const roleBasedRedirect = (res) => {
     if (res.data.role === "admin") {
@@ -32,6 +33,8 @@ const Login = ({ history }) => {
       history.push("/user/history");
     }
   };
+=======
+>>>>>>> 229820b0c031893b8f44ffb866a618a853e90c64
 
   const handleSubmit = async (e) => {
     e.preventDefault();

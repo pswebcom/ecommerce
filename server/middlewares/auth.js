@@ -1,4 +1,5 @@
 const admin = require("../firebase");
+<<<<<<< HEAD
 const User = require("../models/user");
 
 exports.authCheck = async (req, res, next) => {
@@ -26,4 +27,10 @@ exports.adminCheck = async (req, res, next) => {
   } else {
     next();
   }
+=======
+
+exports.authCheck = (req, res, next) => {
+  console.log(req.headers); //token
+  next();
+>>>>>>> 229820b0c031893b8f44ffb866a618a853e90c64
 };
